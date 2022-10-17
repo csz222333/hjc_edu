@@ -24,4 +24,6 @@ public interface QuestionServer extends IService<Question> {
     ResponseData deleteErrorQuestion(Question question);
 
     ResponseData getQuestionById(Question question);
+
+    ResponseData getErrorQS();
 }

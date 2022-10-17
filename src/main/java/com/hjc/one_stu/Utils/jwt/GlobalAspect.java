@@ -26,25 +26,25 @@ public class GlobalAspect extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader("jwt-token");
 
-        String requestURI = request.getRequestURI();
-
-        List<String> fxUrI = URI.getFxUrI();
-
-        for (String url : fxUrI) {
-            if(url.equals(requestURI)){
-                filterChain.doFilter(request,response);
-                return;
-            }
-        }
-
-        String s = PassWorldUtils.decrypContext(token);
-
-        UserVo userVo = OauthUtils.tokenToUserVo(s);
-
-        if(userVo.getExFlag()){
-            response.setStatus(HttpServletResponse.SC_HTTP_VERSION_NOT_SUPPORTED);
-            return;
-        }
+//        String requestURI = request.getRequestURI();
+//
+//        List<String> fxUrI = URI.getFxUrI();
+//
+//        for (String url : fxUrI) {
+//            if(url.equals(requestURI)){
+//                filterChain.doFilter(request,response);
+//                return;
+//            }
+//        }
+//
+//        String s = PassWorldUtils.decrypContext(token);
+//
+//        UserVo userVo = OauthUtils.tokenToUserVo(s);
+//
+//        if(userVo.getExFlag()){
+//            response.setStatus(HttpServletResponse.SC_HTTP_VERSION_NOT_SUPPORTED);
+//            return;
+//        }
         filterChain.doFilter(request,response);
 
     }

@@ -67,6 +67,11 @@ public class QuestionController {
         return server.getQuestionById(question);
     }
 
+    @PostMapping("/getErrorQS")
+    public ResponseData getErrorQS(){
+
+        return server.getErrorQS();
+    }
 
 
 

@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hjc.one_stu.Dao.Question;
+import com.hjc.one_stu.Dao.User;
 import com.hjc.one_stu.Dao.UserVO.UserVo;
 import com.hjc.one_stu.Dao.record;
 import com.hjc.one_stu.Mapper.QuestionMapper;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -162,6 +164,16 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         }
 
         return ResponseData.success(datas);
+    }
+
+    @Override
+    public ResponseData getErrorQS() {
+
+        User user = OauthUtils.getCurrentUser().getUser();
+
+        List<HashMap<String, String>> maps = baseMapper.selectError(user);
+
+        return ResponseData.success(maps);
     }
 
 
